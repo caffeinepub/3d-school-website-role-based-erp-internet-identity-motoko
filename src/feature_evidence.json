@@ -1,0 +1,499 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-a-public-facing-school-website-with-routes-pages-home-about-us-academics-admissions-faculty-events-gallery-and-contact-including-responsive-navigation-desktop-mobile-and-a-footer-with-key-links",
+      "featureTitle": "Implement a public-facing school website with routes/pages: Home, About Us, Academics, Admissions, Faculty, Events, Gallery, and Contact, including responsive navigation (desktop + mobile) and a footer with key links.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/PublicFooter.tsx",
+        "frontend/src/components/layout/PublicLayout.tsx",
+        "frontend/src/components/layout/PublicNav.tsx",
+        "frontend/src/pages/public/AboutPage.tsx",
+        "frontend/src/pages/public/AcademicsPage.tsx",
+        "frontend/src/pages/public/AdmissionsPage.tsx",
+        "frontend/src/pages/public/ContactPage.tsx",
+        "frontend/src/pages/public/EventsPage.tsx",
+        "frontend/src/pages/public/FacultyPage.tsx",
+        "frontend/src/pages/public/GalleryPage.tsx",
+        "frontend/src/pages/public/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-3d-interactive-hero-section-on-the-home-page-using-three-js-via-react-three-fiber-featuring-an-animated-school-campus-scene-with-smooth-camera-interaction-behavior-and-graceful-fallback-on-low-performance-devices",
+      "featureTitle": "Add a 3D interactive hero section on the Home page using Three.js (via React Three Fiber) featuring an animated school/campus scene, with smooth camera/interaction behavior and graceful fallback on low-performance devices.",
+      "files": [
+        "frontend/src/components/three/SchoolHero3D.tsx",
+        "frontend/src/components/three/SchoolHeroFallback.tsx",
+        "frontend/src/components/three/WebGLSupport.ts",
+        "frontend/src/pages/public/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-virtual-campus-tour-page-section-using-an-equirectangular-360-panorama-viewer-in-three-js-allowing-users-to-look-around-and-switch-between-at-least-3-tour-spots",
+      "featureTitle": "Add a Virtual Campus Tour page/section using an equirectangular 360° panorama viewer in Three.js, allowing users to look around and switch between at least 3 tour “spots”.",
+      "files": [
+        "frontend/src/components/three/PanoramaViewer.tsx",
+        "frontend/src/components/three/tourSpots.ts",
+        "frontend/src/pages/public/CampusTourPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-site-wide-motion-and-interaction-polish-smooth-scrolling-between-sections-where-appropriate-parallax-accents-on-public-pages-and-micro-interactions-hover-focus-press-states-that-remain-accessible",
+      "featureTitle": "Implement site-wide motion and interaction polish: smooth scrolling between sections where appropriate, parallax accents on public pages, and micro-interactions (hover/focus/press states) that remain accessible.",
+      "files": [
+        "frontend/src/components/layout/PublicNav.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/public/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-dark-light-mode-toggle-with-persisted-user-preference-local-storage-and-ensure-public-pages-and-erp-ui-support-both-themes",
+      "featureTitle": "Add dark/light mode toggle with persisted user preference (local storage) and ensure public pages and ERP UI support both themes.",
+      "files": [
+        "frontend/src/components/layout/ErpLayout.tsx",
+        "frontend/src/components/layout/PublicNav.tsx",
+        "frontend/src/components/theme/ThemeProvider.tsx",
+        "frontend/src/components/theme/ThemeToggle.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-an-authenticated-erp-area-e-g-erp-that-uses-internet-identity-for-login-and-enforces-role-based-access-control-rbac-for-roles-admin-principal-management-teacher-student-parent-accountant-librarian",
+      "featureTitle": "Create an authenticated ERP area (e.g., /erp) that uses Internet Identity for login and enforces role-based access control (RBAC) for roles: Admin, Principal/Management, Teacher, Student, Parent, Accountant, Librarian.",
+      "files": [
+        "frontend/src/components/auth/ProfileSetupModal.tsx",
+        "frontend/src/components/auth/RequireAuth.tsx",
+        "frontend/src/components/layout/ErpLayout.tsx",
+        "frontend/src/hooks/queries/useCallerProfile.ts",
+        "frontend/src/pages/erp/ErpLoginPage.tsx",
+        "frontend/src/pages/erp/admin/RoleAssignmentPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-erp-ui-implement-an-erp-dashboard-landing-page-showing-role-appropriate-widgets-e-g-upcoming-events-today-s-timetable-attendance-snapshot-pending-invoices-recent-announcements",
+      "featureTitle": "ERP UI: Implement an ERP dashboard landing page showing role-appropriate widgets (e.g., upcoming events, today’s timetable, attendance snapshot, pending invoices, recent announcements).",
+      "files": [
+        "frontend/src/pages/erp/DashboardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-student-management-module-provide-student-registration-profile-screens-including-photo-and-document-metadata-admissions-status-tracking-academic-history-view-and-student-search-filter-for-authorized-staff",
+      "featureTitle": "Student Management module: Provide student registration/profile screens (including photo and document metadata), admissions status tracking, academic history view, and student search/filter for authorized staff.",
+      "files": [
+        "frontend/src/pages/erp/students/StudentCreatePage.tsx",
+        "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+        "frontend/src/pages/erp/students/StudentsListPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-attendance-module-implement-attendance-tracking-with-a-calendar-style-view-for-students-parents-and-a-mark-attendance-workflow-for-teachers-admin-scoped-by-class-section-and-date",
+      "featureTitle": "Attendance module: Implement attendance tracking with a calendar-style view for Students/Parents and a mark-attendance workflow for Teachers/Admin, scoped by class/section and date.",
+      "files": [
+        "frontend/src/pages/erp/attendance/AttendanceOverviewPage.tsx",
+        "frontend/src/pages/erp/attendance/MarkAttendancePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-grades-report-cards-module-implement-grade-entry-for-teachers-a-student-gradebook-view-and-generation-of-a-printable-report-card-transcript-view-per-term",
+      "featureTitle": "Grades/Report cards module: Implement grade entry for Teachers, a student gradebook view, and generation of a printable report card/transcript view per term.",
+      "files": [
+        "frontend/src/pages/erp/grades/GradebookPage.tsx",
+        "frontend/src/pages/erp/grades/ReportCardPrintPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-faculty-staff-module-implement-teacher-staff-profiles-attendance-leave-requests-and-class-timetable-assignments-management-for-admin-principal",
+      "featureTitle": "Faculty/Staff module: Implement teacher/staff profiles, attendance/leave requests, and class/timetable assignments management for Admin/Principal.",
+      "files": [
+        "frontend/src/pages/erp/staff/LeaveRequestsPage.tsx",
+        "frontend/src/pages/erp/staff/StaffDetailPage.tsx",
+        "frontend/src/pages/erp/staff/StaffListPage.tsx",
+        "frontend/src/pages/erp/timetable/MyTimetablePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-academic-management-module-implement-courses-curriculum-management-class-section-setup-timetable-creation-editing-exam-schedule-creation-and-an-assignment-submission-portal-file-metadata-links-with-per-class-visibility",
+      "featureTitle": "Academic Management module: Implement courses/curriculum management, class/section setup, timetable creation/editing, exam schedule creation, and an assignment submission portal (file metadata + links) with per-class visibility.",
+      "files": [
+        "frontend/src/pages/erp/academics/AssignmentsPage.tsx",
+        "frontend/src/pages/erp/academics/ClassSectionsPage.tsx",
+        "frontend/src/pages/erp/academics/ExamSchedulePage.tsx",
+        "frontend/src/pages/erp/academics/TimetableEditorPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fee-management-module-implement-fee-structure-configuration-invoice-generation-receipt-view-scholarship-discount-adjustments-and-a-payment-flow-that-records-payment-status-including-support-for-stripe-as-the-online-gateway-within-platform-constraints",
+      "featureTitle": "Fee Management module: Implement fee structure configuration, invoice generation, receipt view, scholarship/discount adjustments, and a payment flow that records payment status (including support for Stripe as the online gateway, within platform constraints).",
+      "files": [
+        "frontend/src/pages/erp/fees/FeesOverviewPage.tsx",
+        "frontend/src/pages/erp/fees/ReceiptPrintPage.tsx",
+        "frontend/src/pages/payments/PaymentFailurePage.tsx",
+        "frontend/src/pages/payments/PaymentSuccessPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-communication-module-implement-in-app-announcements-notifications-with-targeting-all-users-by-role-by-class-section-and-read-unread-tracking-per-user",
+      "featureTitle": "Communication module: Implement in-app announcements/notifications with targeting (all users, by role, by class/section) and read/unread tracking per user.",
+      "files": [
+        "frontend/src/pages/erp/announcements/AnnouncementsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-library-module-implement-book-catalog-crud-search-issue-return-tracking-and-fine-calculation-recording-for-overdue-items",
+      "featureTitle": "Library module: Implement book catalog CRUD, search, issue/return tracking, and fine calculation/recording for overdue items.",
+      "files": [
+        "frontend/src/pages/erp/library/LibraryCatalogPage.tsx",
+        "frontend/src/pages/erp/library/LibraryLoansPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-reports-analytics-provide-role-appropriate-reports-for-attendance-student-performance-and-financial-summaries-include-export-to-csv-and-a-printable-pdf-style-view-frontend-generated",
+      "featureTitle": "Reports & analytics: Provide role-appropriate reports for attendance, student performance, and financial summaries; include export to CSV and a printable PDF-style view (frontend-generated).",
+      "files": [
+        "frontend/src/pages/erp/reports/AttendanceReportPage.tsx",
+        "frontend/src/pages/erp/reports/FinancialSummaryReportPage.tsx",
+        "frontend/src/pages/erp/reports/PerformanceReportPage.tsx",
+        "frontend/src/pages/erp/reports/ReportsIndexPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-id-card-generation-provide-a-student-id-card-view-that-composes-student-photo-key-fields-into-a-printable-card-layout-frontend-rendered-with-role-based-access-to-generate-print",
+      "featureTitle": "ID card generation: Provide a student ID card view that composes student photo + key fields into a printable card layout (frontend-rendered) with role-based access to generate/print.",
+      "files": [
+        "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+        "frontend/src/pages/erp/students/StudentIdCardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-18"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-accessibility-performance-ensure-wcag-2-1-aligned-basics-keyboard-navigation-focus-states-semantic-headings-form-labels-contrast-and-optimize-3d-assets-lazy-loading-lower-poly-texture-sizing-so-public-pages-remain-fast",
+      "featureTitle": "Accessibility & performance: Ensure WCAG 2.1-aligned basics (keyboard navigation, focus states, semantic headings, form labels, contrast) and optimize 3D assets (lazy loading, lower-poly/texture sizing) so public pages remain fast.",
+      "files": [
+        "frontend/src/components/three/SchoolHero3D.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/public/CampusTourPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-19"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-choose-and-apply-a-cohesive-modern-visual-theme-appropriate-for-a-professional-school-brand-distinct-color-palette-not-based-on-blue-purple-by-default-consistent-typography-scale-spacing-system-and-component-styling-across-both-the-public-site-and-erp",
+      "featureTitle": "Choose and apply a cohesive, modern visual theme appropriate for a professional school brand (distinct color palette not based on blue/purple by default, consistent typography scale, spacing system, and component styling) across both the public site and ERP.",
+      "files": [
+        "frontend/src/components/layout/ErpLayout.tsx",
+        "frontend/src/components/layout/PublicLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-20"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-image-assets-to-support-the-public-site-and-3d-tour-and-render-them-from-frontend-public-assets-generated-without-routing-images-through-the-backend",
+      "featureTitle": "Add generated static image assets to support the public site and 3D tour, and render them from frontend/public/assets/generated without routing images through the backend.",
+      "files": [
+        "frontend/src/components/brand/SchoolLogo.tsx",
+        "frontend/src/components/layout/PublicNav.tsx",
+        "frontend/src/components/three/SchoolHeroFallback.tsx",
+        "frontend/src/pages/public/CampusTourPage.tsx",
+        "frontend/src/pages/public/GalleryPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-21"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

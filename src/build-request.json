@@ -1,0 +1,446 @@
+{
+  "kind": "build_request",
+  "title": "3D School Website + Role-Based ERP (Internet Identity + Motoko)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement a public-facing school website with routes/pages: Home, About Us, Academics, Admissions, Faculty, Events, Gallery, and Contact, including responsive navigation (desktop + mobile) and a footer with key links.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Sections: Home, About Us, Academics, Admissions, Faculty, Events, Gallery, Contact"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can navigate to each page via the main navigation without errors.",
+        "Layout is responsive and usable on mobile and desktop.",
+        "All user-facing copy is in English."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a 3D interactive hero section on the Home page using Three.js (via React Three Fiber) featuring an animated school/campus scene, with smooth camera/interaction behavior and graceful fallback on low-performance devices.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "3D hero section with animated school building or campus tour",
+          "3D animations using Three.js or similar"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home page renders a 3D hero scene without crashing.",
+        "3D scene performance is acceptable on typical laptops/phones (no continuous heavy re-renders).",
+        "If WebGL is unavailable, users see a static hero image/section instead of a broken canvas."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add a Virtual Campus Tour page/section using an equirectangular 360° panorama viewer in Three.js, allowing users to look around and switch between at least 3 tour “spots”.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Virtual campus tour with 360° panoramic views"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can open the tour and pan/zoom the 360° view.",
+        "Users can switch between at least 3 tour spots.",
+        "Tour works on mobile touch and desktop mouse controls."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement site-wide motion and interaction polish: smooth scrolling between sections where appropriate, parallax accents on public pages, and micro-interactions (hover/focus/press states) that remain accessible.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Smooth scrolling and parallax effects",
+          "Smooth transitions and micro-interactions"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Public pages include visible and consistent hover/focus states.",
+        "Animations do not block interaction and do not trap keyboard focus.",
+        "Reduced-motion preference is respected (reduced or disabled animations when enabled)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add dark/light mode toggle with persisted user preference (local storage) and ensure public pages and ERP UI support both themes.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Dark/light mode toggle"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can toggle dark/light mode from the UI.",
+        "Theme preference persists across reloads.",
+        "All primary UI surfaces/text meet readable contrast in both modes."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create an authenticated ERP area (e.g., /erp) that uses Internet Identity for login and enforces role-based access control (RBAC) for roles: Admin, Principal/Management, Teacher, Student, Parent, Accountant, Librarian.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "User Roles & Permissions:\n\nAdmin (full access)\nPrincipal/Management\nTeachers\nStudents\nParents\nAccountant\nLibrarian",
+          "JWT authentication\nRole-based access control"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can sign in/out using Internet Identity.",
+        "ERP routes require authentication; unauthenticated users are redirected to login.",
+        "Backend enforces RBAC checks for protected operations (not only frontend hiding).",
+        "At least one Admin can be designated and can assign roles to other users."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Backend: Define persistent data models and CRUD APIs in the single Motoko main actor for core entities needed by the ERP: Users (principal + roles), Students, Staff/Teachers, Courses, Classes/Sections, Timetables, Attendance records, Assessments/Grades, Fee structures/invoices/payments, Announcements, Library items/loans/fines.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ERP System Modules:\n1. Student Management:\n\nStudent registration and profiles\n...\n2. Faculty/Staff Management:\n...\n3. Academic Management:\n...\n4. Fee Management:\n...\n5. Communication System:\n...\n6. Library Management:\n...\n10. User Roles & Permissions:"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All listed entities have stable IDs and can be created/read/updated (and deleted where appropriate).",
+        "Data persists across canister upgrades using stable storage patterns.",
+        "APIs return clear success/error results suitable for frontend error handling."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "ERP UI: Implement an ERP dashboard landing page showing role-appropriate widgets (e.g., upcoming events, today’s timetable, attendance snapshot, pending invoices, recent announcements).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Dashboard with key metrics"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After login, user sees a dashboard page.",
+        "Widgets differ depending on role (e.g., Teacher vs Student vs Accountant).",
+        "Dashboard loads data through React Query and shows loading/empty states."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Student Management module: Provide student registration/profile screens (including photo and document metadata), admissions status tracking, academic history view, and student search/filter for authorized staff.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Student registration and profiles",
+          "Admission process tracking",
+          "Student database with photos and documents",
+          "Academic history and records"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Authorized roles can create and edit student profiles.",
+        "Admissions status can be updated through defined states (e.g., Applied/Under Review/Accepted/Rejected/Enrolled).",
+        "Student list supports search and basic filters (class/section/status).",
+        "Students/Parents can view (read-only) their own profile and history based on RBAC."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Attendance module: Implement attendance tracking with a calendar-style view for Students/Parents and a mark-attendance workflow for Teachers/Admin, scoped by class/section and date.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Attendance tracking with calendar view"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Teachers/Admin can mark attendance for a class on a given date.",
+        "Students/Parents can view attendance history in a calendar or calendar-like list view.",
+        "Backend prevents unauthorized attendance modifications (RBAC enforced)."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Grades/Report cards module: Implement grade entry for Teachers, a student gradebook view, and generation of a printable report card/transcript view per term.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Grade/marks management",
+          "Progress reports and transcripts",
+          "Online grade book",
+          "Report card generation"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Teachers can enter/update grades for students in their assigned classes.",
+        "Students/Parents can view grades for their own student account(s).",
+        "Report card view is printable and includes student info, subjects, and term totals/remarks."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Faculty/Staff module: Implement teacher/staff profiles, attendance/leave requests, and class/timetable assignments management for Admin/Principal.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Teacher profiles and qualifications",
+          "Staff attendance and leave management",
+          "Timetable and class assignments"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin/Principal can create/edit staff profiles and assign roles.",
+        "Staff can submit leave requests; Admin/Principal can approve/deny.",
+        "Teachers can view their own timetable and assigned classes."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Academic Management module: Implement courses/curriculum management, class/section setup, timetable creation/editing, exam schedule creation, and an assignment submission portal (file metadata + links) with per-class visibility.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Course and curriculum management",
+          "Class and section organization",
+          "Timetable creation and management",
+          "Exam scheduling",
+          "Assignment submission portal"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin/Principal can manage courses and class/section structures.",
+        "Timetables can be created and viewed by relevant roles.",
+        "Teachers can create assignments for their classes; students can submit assignment entries (with attachment metadata).",
+        "Exam schedule is viewable by students/parents/teachers."
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Fee Management module: Implement fee structure configuration, invoice generation, receipt view, scholarship/discount adjustments, and a payment flow that records payment status (including support for Stripe as the online gateway, within platform constraints).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Fee structure configuration",
+          "Online fee payment gateway",
+          "Fee receipts and invoices",
+          "Scholarship/discount management"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Accountant/Admin can define fee structures and generate invoices for students.",
+        "Students/Parents can view invoices and payment status.",
+        "Payments can be marked as paid with recorded reference fields; if Stripe flow is enabled, the UI guides the user through checkout and records the returned status/reference.",
+        "Receipts are viewable/printable for paid invoices."
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Communication module: Implement in-app announcements/notifications with targeting (all users, by role, by class/section) and read/unread tracking per user.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Announcements and notifications",
+          "Event notifications",
+          "Emergency alerts"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Authorized roles can create announcements with audience targeting.",
+        "Users see a notifications list with read/unread state.",
+        "Announcements can be marked as “urgent” and visually distinguished in the UI."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Library module: Implement book catalog CRUD, search, issue/return tracking, and fine calculation/recording for overdue items.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Book catalog and search",
+          "Issue/return tracking",
+          "Fine management"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Librarian can add/edit/remove catalog entries.",
+        "Users can search the catalog by title/author/keyword.",
+        "Librarian can issue and return books to students; overdue fines are computed and stored/displayed."
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Reports & analytics: Provide role-appropriate reports for attendance, student performance, and financial summaries; include export to CSV and a printable PDF-style view (frontend-generated).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Reports & Analytics:\n\nStudent performance analytics\nAttendance reports\nFinancial reports\nExport to PDF/Excel functionality"
+        ]
+      },
+      "acceptanceCriteria": [
+        "At least 1 attendance report, 1 performance report, and 1 financial summary report are available (scoped by role).",
+        "Users can export tabular data to CSV.",
+        "Reports have a print-friendly layout suitable for “Save as PDF” in the browser."
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "text": "ID card generation: Provide a student ID card view that composes student photo + key fields into a printable card layout (frontend-rendered) with role-based access to generate/print.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ID card generation"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Authorized staff can open a student and view an ID card preview.",
+        "ID card layout is printable and includes at least student name, ID, class/section, and photo.",
+        "Students/Parents cannot generate other students’ cards."
+      ]
+    },
+    {
+      "id": "REQ-19",
+      "text": "Accessibility & performance: Ensure WCAG 2.1-aligned basics (keyboard navigation, focus states, semantic headings, form labels, contrast) and optimize 3D assets (lazy loading, lower-poly/texture sizing) so public pages remain fast.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Accessibility compliant (WCAG 2.1)",
+          "Fast loading times with optimized 3D assets"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All interactive controls are keyboard accessible with visible focus.",
+        "Forms have labels and validation errors are announced/visible.",
+        "3D scenes load progressively (no blocking full-page load) and use lazy loading where feasible."
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "text": "Choose and apply a cohesive, modern visual theme appropriate for a professional school brand (distinct color palette not based on blue/purple by default, consistent typography scale, spacing system, and component styling) across both the public site and ERP.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a modern, professional school website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Public site and ERP share consistent typography, spacing, and component styling.",
+        "Theme defines primary/secondary colors and is applied consistently to navigation, buttons, cards, and headings.",
+        "Design remains readable and professional in both light and dark mode."
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "text": "Add generated static image assets to support the public site and 3D tour, and render them from frontend/public/assets/generated without routing images through the backend.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Virtual campus tour with 360° panoramic views",
+          "3D hero section with animated school building or campus tour",
+          "Gallery"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All required generated images exist under frontend/public/assets/generated and are referenced directly by the frontend.",
+        "Public pages render the generated logo/hero/tour/gallery images without backend involvement."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must be a single Motoko actor (all logic in backend/main.mo).",
+    "Do not edit files under frontend immutablePaths (Internet Identity hooks, actor hook, main.tsx, and frontend/src/components/ui sources); compose them instead.",
+    "Use Internet Identity for authentication (no third-party auth providers).",
+    "Do not use external databases (no PostgreSQL/MongoDB); persist data in canister stable storage.",
+    "No WebSockets/real-time chat; implement communication as in-app announcements only.",
+    "No SMS/Email provider integrations.",
+    "No GPS/maps integrations; transportation tracking must be limited to route/assignment data only (no live location)."
+  ],
+  "nonGoals": [
+    "Cloud deployment setup (AWS/Azure/etc.), SSL certificate provisioning, and automated backups outside the canister environment.",
+    "JWT-based authentication (replace with Internet Identity + canister session/identity model).",
+    "Full payroll/tax engine calculations (limit to recording payroll fields if needed later).",
+    "Parent-teacher real-time messaging/chat.",
+    "External document cloud storage integrations (store only metadata and optional small content within platform limits)."
+  ],
+  "imageRequirements": {
+    "required": [
+      "School logo mark, minimal and professional (school-logo.dim_512x512.png)",
+      "Wide hero background illustration of a modern school campus at dusk, subtle and clean (hero-campus.dim_1920x800.png)",
+      "Equirectangular 360 panorama of a school courtyard (tour-spot-1-360.dim_4096x2048.jpg)",
+      "Equirectangular 360 panorama of a school hallway/library (tour-spot-2-360.dim_4096x2048.jpg)",
+      "Equirectangular 360 panorama of a classroom/lab (tour-spot-3-360.dim_4096x2048.jpg)",
+      "Gallery photo set: 6 clean, realistic campus/activity photos (gallery-01.dim_1600x1000.jpg)",
+      "Gallery photo set: 6 clean, realistic campus/activity photos (gallery-02.dim_1600x1000.jpg)",
+      "Gallery photo set: 6 clean, realistic campus/activity photos (gallery-03.dim_1600x1000.jpg)",
+      "Gallery photo set: 6 clean, realistic campus/activity photos (gallery-04.dim_1600x1000.jpg)",
+      "Gallery photo set: 6 clean, realistic campus/activity photos (gallery-05.dim_1600x1000.jpg)",
+      "Gallery photo set: 6 clean, realistic campus/activity photos (gallery-06.dim_1600x1000.jpg)",
+      "Subtle ID card background pattern with light geometric motifs (id-card-bg.dim_1050x650.png)"
+    ],
+    "edits": []
+  }
+}

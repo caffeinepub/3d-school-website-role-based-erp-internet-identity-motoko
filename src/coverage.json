@@ -1,0 +1,587 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-14T09:27:35.074Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 21,
+    "implemented": 20,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Implement a public-facing school website with routes/pages: Home, About Us, Academics, Admissions, Faculty, Events, Gallery, and Contact, including responsive navigation (desktop + mobile) and a footer with key links.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/routes/router.tsx",
+          "frontend/src/components/layout/PublicLayout.tsx",
+          "frontend/src/components/layout/PublicNav.tsx",
+          "frontend/src/components/layout/PublicFooter.tsx",
+          "frontend/src/pages/public/HomePage.tsx",
+          "frontend/src/pages/public/AboutPage.tsx",
+          "frontend/src/pages/public/AcademicsPage.tsx",
+          "frontend/src/pages/public/AdmissionsPage.tsx",
+          "frontend/src/pages/public/FacultyPage.tsx",
+          "frontend/src/pages/public/EventsPage.tsx",
+          "frontend/src/pages/public/GalleryPage.tsx",
+          "frontend/src/pages/public/ContactPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/PublicLayout.tsx",
+          "frontend/src/components/layout/PublicNav.tsx",
+          "frontend/src/components/layout/PublicFooter.tsx",
+          "frontend/src/pages/public/HomePage.tsx",
+          "frontend/src/pages/public/AboutPage.tsx",
+          "frontend/src/pages/public/AcademicsPage.tsx",
+          "frontend/src/pages/public/AdmissionsPage.tsx",
+          "frontend/src/pages/public/FacultyPage.tsx",
+          "frontend/src/pages/public/EventsPage.tsx",
+          "frontend/src/pages/public/GalleryPage.tsx",
+          "frontend/src/pages/public/ContactPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Attendance module: Implement attendance tracking with a calendar-style view for Students/Parents and a mark-attendance workflow for Teachers/Admin, scoped by class/section and date.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/attendance/AttendanceOverviewPage.tsx",
+          "frontend/src/pages/erp/attendance/MarkAttendancePage.tsx",
+          "frontend/src/components/erp/attendance/AttendanceCalendar.tsx",
+          "frontend/src/hooks/queries/useAttendance.ts",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/attendance/AttendanceOverviewPage.tsx",
+          "frontend/src/pages/erp/attendance/MarkAttendancePage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Grades/Report cards module: Implement grade entry for Teachers, a student gradebook view, and generation of a printable report card/transcript view per term.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/grades/GradebookPage.tsx",
+          "frontend/src/pages/erp/grades/ReportCardPrintPage.tsx",
+          "frontend/src/hooks/queries/useGrades.ts",
+          "frontend/src/components/erp/print/PrintLayout.tsx",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/grades/GradebookPage.tsx",
+          "frontend/src/pages/erp/grades/ReportCardPrintPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Faculty/Staff module: Implement teacher/staff profiles, attendance/leave requests, and class/timetable assignments management for Admin/Principal.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/staff/StaffListPage.tsx",
+          "frontend/src/pages/erp/staff/StaffDetailPage.tsx",
+          "frontend/src/pages/erp/staff/LeaveRequestsPage.tsx",
+          "frontend/src/pages/erp/timetable/MyTimetablePage.tsx",
+          "frontend/src/hooks/queries/useClasses.ts",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/staff/StaffListPage.tsx",
+          "frontend/src/pages/erp/staff/StaffDetailPage.tsx",
+          "frontend/src/pages/erp/staff/LeaveRequestsPage.tsx",
+          "frontend/src/pages/erp/timetable/MyTimetablePage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Academic Management module: Implement courses/curriculum management, class/section setup, timetable creation/editing, exam schedule creation, and an assignment submission portal (file metadata + links) with per-class visibility.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/academics/ClassSectionsPage.tsx",
+          "frontend/src/pages/erp/academics/TimetableEditorPage.tsx",
+          "frontend/src/pages/erp/academics/ExamSchedulePage.tsx",
+          "frontend/src/pages/erp/academics/AssignmentsPage.tsx",
+          "frontend/src/hooks/queries/useAcademics.ts",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/academics/ClassSectionsPage.tsx",
+          "frontend/src/pages/erp/academics/TimetableEditorPage.tsx",
+          "frontend/src/pages/erp/academics/ExamSchedulePage.tsx",
+          "frontend/src/pages/erp/academics/AssignmentsPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Fee Management module: Implement fee structure configuration, invoice generation, receipt view, scholarship/discount adjustments, and a payment flow that records payment status (including support for Stripe as the online gateway, within platform constraints).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/fees/FeesOverviewPage.tsx",
+          "frontend/src/pages/erp/fees/ReceiptPrintPage.tsx",
+          "frontend/src/components/payments/PaymentSetup.tsx",
+          "frontend/src/hooks/payments/useCreateCheckoutSession.ts",
+          "frontend/src/pages/payments/PaymentSuccessPage.tsx",
+          "frontend/src/pages/payments/PaymentFailurePage.tsx",
+          "frontend/src/hooks/queries/useFees.ts",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/fees/FeesOverviewPage.tsx",
+          "frontend/src/pages/erp/fees/ReceiptPrintPage.tsx",
+          "frontend/src/pages/payments/PaymentSuccessPage.tsx",
+          "frontend/src/pages/payments/PaymentFailurePage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Communication module: Implement in-app announcements/notifications with targeting (all users, by role, by class/section) and read/unread tracking per user.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/announcements/AnnouncementsPage.tsx",
+          "frontend/src/components/erp/announcements/AnnouncementComposer.tsx",
+          "frontend/src/hooks/queries/useAnnouncements.ts",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/announcements/AnnouncementsPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Library module: Implement book catalog CRUD, search, issue/return tracking, and fine calculation/recording for overdue items.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/library/LibraryCatalogPage.tsx",
+          "frontend/src/pages/erp/library/LibraryLoansPage.tsx",
+          "frontend/src/hooks/queries/useLibrary.ts",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/library/LibraryCatalogPage.tsx",
+          "frontend/src/pages/erp/library/LibraryLoansPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Reports & analytics: Provide role-appropriate reports for attendance, student performance, and financial summaries; include export to CSV and a printable PDF-style view (frontend-generated).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/reports/ReportsIndexPage.tsx",
+          "frontend/src/pages/erp/reports/AttendanceReportPage.tsx",
+          "frontend/src/pages/erp/reports/PerformanceReportPage.tsx",
+          "frontend/src/pages/erp/reports/FinancialSummaryReportPage.tsx",
+          "frontend/src/utils/exportCsv.ts",
+          "frontend/src/components/erp/print/PrintLayout.tsx",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/reports/ReportsIndexPage.tsx",
+          "frontend/src/pages/erp/reports/AttendanceReportPage.tsx",
+          "frontend/src/pages/erp/reports/PerformanceReportPage.tsx",
+          "frontend/src/pages/erp/reports/FinancialSummaryReportPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-18",
+        "summary": "ID card generation: Provide a student ID card view that composes student photo + key fields into a printable card layout (frontend-rendered) with role-based access to generate/print.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/students/StudentIdCardPage.tsx",
+          "frontend/src/components/erp/students/StudentIdCard.tsx",
+          "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/students/StudentIdCardPage.tsx",
+          "frontend/src/pages/erp/students/StudentDetailPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-19",
+        "summary": "Accessibility & performance: Ensure WCAG 2.1-aligned basics (keyboard navigation, focus states, semantic headings, form labels, contrast) and optimize 3D assets (lazy loading, lower-poly/texture sizing) so public pages remain fast.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/a11y/VisuallyHidden.tsx",
+          "frontend/src/components/a11y/FormField.tsx",
+          "frontend/src/components/three/SchoolHero3D.tsx",
+          "frontend/src/pages/public/CampusTourPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/three/SchoolHero3D.tsx",
+          "frontend/src/pages/public/CampusTourPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add a 3D interactive hero section on the Home page using Three.js (via React Three Fiber) featuring an animated school/campus scene, with smooth camera/interaction behavior and graceful fallback on low-performance devices.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/package.json",
+          "frontend/src/components/three/WebGLSupport.ts",
+          "frontend/src/components/three/SchoolHero3D.tsx",
+          "frontend/src/components/three/SchoolHeroFallback.tsx",
+          "frontend/src/pages/public/HomePage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/three/WebGLSupport.ts",
+          "frontend/src/components/three/SchoolHero3D.tsx",
+          "frontend/src/components/three/SchoolHeroFallback.tsx",
+          "frontend/src/pages/public/HomePage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-20",
+        "summary": "Choose and apply a cohesive, modern visual theme appropriate for a professional school brand (distinct color palette not based on blue/purple by default, consistent typography scale, spacing system, and component styling) across both the public site and ERP.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/PublicLayout.tsx",
+          "frontend/src/components/layout/ErpLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/PublicLayout.tsx",
+          "frontend/src/components/layout/ErpLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-21",
+        "summary": "Add generated static image assets to support the public site and 3D tour, and render them from frontend/public/assets/generated without routing images through the backend.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/school-logo.dim_512x512.png",
+          "frontend/public/assets/generated/hero-campus.dim_1920x800.png",
+          "frontend/public/assets/generated/tour-spot-1-360.dim_4096x2048.jpg",
+          "frontend/public/assets/generated/tour-spot-2-360.dim_4096x2048.jpg",
+          "frontend/public/assets/generated/tour-spot-3-360.dim_4096x2048.jpg",
+          "frontend/public/assets/generated/gallery-01.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-02.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-03.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-04.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-05.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-06.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/id-card-bg.dim_1050x650.png",
+          "frontend/src/components/brand/SchoolLogo.tsx",
+          "frontend/src/components/layout/PublicNav.tsx",
+          "frontend/src/pages/public/GalleryPage.tsx",
+          "frontend/src/pages/public/CampusTourPage.tsx",
+          "frontend/src/components/three/SchoolHeroFallback.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/school-logo.dim_512x512.png",
+          "frontend/public/assets/generated/hero-campus.dim_1920x800.png",
+          "frontend/public/assets/generated/tour-spot-1-360.dim_4096x2048.jpg",
+          "frontend/public/assets/generated/tour-spot-2-360.dim_4096x2048.jpg",
+          "frontend/public/assets/generated/tour-spot-3-360.dim_4096x2048.jpg",
+          "frontend/public/assets/generated/gallery-01.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-02.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-03.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-04.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-05.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/gallery-06.dim_1600x1000.jpg",
+          "frontend/public/assets/generated/id-card-bg.dim_1050x650.png",
+          "frontend/src/components/brand/SchoolLogo.tsx",
+          "frontend/src/components/layout/PublicNav.tsx",
+          "frontend/src/pages/public/GalleryPage.tsx",
+          "frontend/src/pages/public/CampusTourPage.tsx",
+          "frontend/src/components/three/SchoolHeroFallback.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Add a Virtual Campus Tour page/section using an equirectangular 360° panorama viewer in Three.js, allowing users to look around and switch between at least 3 tour “spots”.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/public/CampusTourPage.tsx",
+          "frontend/src/components/three/PanoramaViewer.tsx",
+          "frontend/src/components/three/tourSpots.ts",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/public/CampusTourPage.tsx",
+          "frontend/src/components/three/PanoramaViewer.tsx",
+          "frontend/src/components/three/tourSpots.ts"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Implement site-wide motion and interaction polish: smooth scrolling between sections where appropriate, parallax accents on public pages, and micro-interactions (hover/focus/press states) that remain accessible.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/motion/MotionProvider.tsx",
+          "frontend/src/components/motion/ParallaxSection.tsx",
+          "frontend/src/index.css",
+          "frontend/src/components/layout/PublicNav.tsx",
+          "frontend/src/pages/public/HomePage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/layout/PublicNav.tsx",
+          "frontend/src/pages/public/HomePage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Add dark/light mode toggle with persisted user preference (local storage) and ensure public pages and ERP UI support both themes.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/theme/useTheme.ts",
+          "frontend/src/components/theme/ThemeToggle.tsx",
+          "frontend/src/components/theme/ThemeProvider.tsx",
+          "frontend/src/components/layout/PublicNav.tsx",
+          "frontend/src/components/layout/ErpLayout.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/theme/ThemeToggle.tsx",
+          "frontend/src/components/theme/ThemeProvider.tsx",
+          "frontend/src/components/layout/PublicNav.tsx",
+          "frontend/src/components/layout/ErpLayout.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Create an authenticated ERP area (e.g., /erp) that uses Internet Identity for login and enforces role-based access control (RBAC) for roles: Admin, Principal/Management, Teacher, Student, Parent, Accountant, Librarian.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/ErpLoginPage.tsx",
+          "frontend/src/components/auth/RequireAuth.tsx",
+          "frontend/src/components/auth/RequireErpRole.tsx",
+          "frontend/src/hooks/queries/useCallerProfile.ts",
+          "frontend/src/components/auth/ProfileSetupModal.tsx",
+          "frontend/src/pages/erp/admin/RoleAssignmentPage.tsx",
+          "frontend/src/routes/router.tsx",
+          "frontend/src/components/layout/ErpLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/ErpLoginPage.tsx",
+          "frontend/src/components/auth/RequireAuth.tsx",
+          "frontend/src/hooks/queries/useCallerProfile.ts",
+          "frontend/src/components/auth/ProfileSetupModal.tsx",
+          "frontend/src/pages/erp/admin/RoleAssignmentPage.tsx",
+          "frontend/src/components/layout/ErpLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Backend: Define persistent data models and CRUD APIs in the single Motoko main actor for core entities needed by the ERP: Users (principal + roles), Students, Staff/Teachers, Courses, Classes/Sections, Timetables, Attendance records, Assessments/Grades, Fee structures/invoices/payments, Announcements, Library items/loans/fines.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-8",
+        "summary": "ERP UI: Implement an ERP dashboard landing page showing role-appropriate widgets (e.g., upcoming events, today’s timetable, attendance snapshot, pending invoices, recent announcements).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/DashboardPage.tsx",
+          "frontend/src/components/erp/widgets/AnnouncementsWidget.tsx",
+          "frontend/src/components/erp/widgets/TimetableWidget.tsx",
+          "frontend/src/components/erp/widgets/AttendanceWidget.tsx",
+          "frontend/src/components/erp/widgets/InvoicesWidget.tsx",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/DashboardPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Student Management module: Provide student registration/profile screens (including photo and document metadata), admissions status tracking, academic history view, and student search/filter for authorized staff.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/erp/students/StudentsListPage.tsx",
+          "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+          "frontend/src/pages/erp/students/StudentCreatePage.tsx",
+          "frontend/src/hooks/queries/useStudents.ts",
+          "frontend/src/components/erp/students/StudentPhotoUploader.tsx",
+          "frontend/src/routes/router.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/erp/students/StudentsListPage.tsx",
+          "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+          "frontend/src/pages/erp/students/StudentCreatePage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/http-outcalls/outcall.mo",
+    "backend/main.mo",
+    "backend/stripe/stripe.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/gallery-01.dim_1600x1000.jpg",
+    "frontend/public/assets/generated/gallery-02.dim_1600x1000.jpg",
+    "frontend/public/assets/generated/gallery-03.dim_1600x1000.jpg",
+    "frontend/public/assets/generated/gallery-04.dim_1600x1000.jpg",
+    "frontend/public/assets/generated/gallery-05.dim_1600x1000.jpg",
+    "frontend/public/assets/generated/gallery-06.dim_1600x1000.jpg",
+    "frontend/public/assets/generated/hero-campus.dim_1920x800.png",
+    "frontend/public/assets/generated/id-card-bg.dim_1050x650.png",
+    "frontend/public/assets/generated/school-logo.dim_512x512.png",
+    "frontend/public/assets/generated/tour-spot-1-360.dim_4096x2048.jpg",
+    "frontend/public/assets/generated/tour-spot-2-360.dim_4096x2048.jpg",
+    "frontend/public/assets/generated/tour-spot-3-360.dim_4096x2048.jpg",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/auth/ProfileSetupModal.tsx",
+    "frontend/src/components/auth/RequireAuth.tsx",
+    "frontend/src/components/brand/SchoolLogo.tsx",
+    "frontend/src/components/layout/ErpLayout.tsx",
+    "frontend/src/components/layout/PublicFooter.tsx",
+    "frontend/src/components/layout/PublicLayout.tsx",
+    "frontend/src/components/layout/PublicNav.tsx",
+    "frontend/src/components/theme/ThemeProvider.tsx",
+    "frontend/src/components/theme/ThemeToggle.tsx",
+    "frontend/src/components/three/PanoramaViewer.tsx",
+    "frontend/src/components/three/SchoolHero3D.tsx",
+    "frontend/src/components/three/SchoolHeroFallback.tsx",
+    "frontend/src/components/three/WebGLSupport.ts",
+    "frontend/src/components/three/tourSpots.ts",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/queries/useCallerProfile.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/erp/DashboardPage.tsx",
+    "frontend/src/pages/erp/ErpLoginPage.tsx",
+    "frontend/src/pages/erp/academics/AssignmentsPage.tsx",
+    "frontend/src/pages/erp/academics/ClassSectionsPage.tsx",
+    "frontend/src/pages/erp/academics/ExamSchedulePage.tsx",
+    "frontend/src/pages/erp/academics/TimetableEditorPage.tsx",
+    "frontend/src/pages/erp/admin/RoleAssignmentPage.tsx",
+    "frontend/src/pages/erp/announcements/AnnouncementsPage.tsx",
+    "frontend/src/pages/erp/attendance/AttendanceOverviewPage.tsx",
+    "frontend/src/pages/erp/attendance/MarkAttendancePage.tsx",
+    "frontend/src/pages/erp/fees/FeesOverviewPage.tsx",
+    "frontend/src/pages/erp/fees/ReceiptPrintPage.tsx",
+    "frontend/src/pages/erp/grades/GradebookPage.tsx",
+    "frontend/src/pages/erp/grades/ReportCardPrintPage.tsx",
+    "frontend/src/pages/erp/library/LibraryCatalogPage.tsx",
+    "frontend/src/pages/erp/library/LibraryLoansPage.tsx",
+    "frontend/src/pages/erp/reports/AttendanceReportPage.tsx",
+    "frontend/src/pages/erp/reports/FinancialSummaryReportPage.tsx",
+    "frontend/src/pages/erp/reports/PerformanceReportPage.tsx",
+    "frontend/src/pages/erp/reports/ReportsIndexPage.tsx",
+    "frontend/src/pages/erp/staff/LeaveRequestsPage.tsx",
+    "frontend/src/pages/erp/staff/StaffDetailPage.tsx",
+    "frontend/src/pages/erp/staff/StaffListPage.tsx",
+    "frontend/src/pages/erp/students/StudentCreatePage.tsx",
+    "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+    "frontend/src/pages/erp/students/StudentIdCardPage.tsx",
+    "frontend/src/pages/erp/students/StudentsListPage.tsx",
+    "frontend/src/pages/erp/timetable/MyTimetablePage.tsx",
+    "frontend/src/pages/payments/PaymentFailurePage.tsx",
+    "frontend/src/pages/payments/PaymentSuccessPage.tsx",
+    "frontend/src/pages/public/AboutPage.tsx",
+    "frontend/src/pages/public/AcademicsPage.tsx",
+    "frontend/src/pages/public/AdmissionsPage.tsx",
+    "frontend/src/pages/public/CampusTourPage.tsx",
+    "frontend/src/pages/public/ContactPage.tsx",
+    "frontend/src/pages/public/EventsPage.tsx",
+    "frontend/src/pages/public/FacultyPage.tsx",
+    "frontend/src/pages/public/GalleryPage.tsx",
+    "frontend/src/pages/public/HomePage.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

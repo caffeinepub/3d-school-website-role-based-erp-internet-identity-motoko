@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.625rem;
+        --background: 0.98 0.01 45;
+        --foreground: 0.15 0.02 45;
+        --card: 1 0 0;
+        --card-foreground: 0.15 0.02 45;
+        --popover: 1 0 0;
+        --popover-foreground: 0.15 0.02 45;
+        --primary: 0.45 0.18 220;
+        --primary-foreground: 0.98 0.01 45;
+        --secondary: 0.92 0.02 45;
+        --secondary-foreground: 0.15 0.02 45;
+        --muted: 0.95 0.01 45;
+        --muted-foreground: 0.50 0.01 45;
+        --accent: 0.92 0.02 45;
+        --accent-foreground: 0.15 0.02 45;
+        --destructive: 0.55 0.22 25;
+        --destructive-foreground: 0.98 0.01 45;
+        --border: 0.88 0.01 45;
+        --input: 0.88 0.01 45;
+        --ring: 0.45 0.18 220;
+        --chart-1: 0.60 0.20 160;
+        --chart-2: 0.55 0.18 200;
+        --chart-3: 0.50 0.16 280;
+        --chart-4: 0.65 0.22 40;
+        --chart-5: 0.70 0.20 320;
+    }
+
+    .dark {
+        --background: 0.12 0.02 240;
+        --foreground: 0.95 0.01 45;
+        --card: 0.18 0.02 240;
+        --card-foreground: 0.95 0.01 45;
+        --popover: 0.15 0.02 240;
+        --popover-foreground: 0.95 0.01 45;
+        --primary: 0.65 0.20 220;
+        --primary-foreground: 0.12 0.02 240;
+        --secondary: 0.25 0.02 240;
+        --secondary-foreground: 0.95 0.01 45;
+        --muted: 0.22 0.02 240;
+        --muted-foreground: 0.65 0.01 45;
+        --accent: 0.30 0.03 240;
+        --accent-foreground: 0.95 0.01 45;
+        --destructive: 0.60 0.20 25;
+        --destructive-foreground: 0.95 0.01 45;
+        --border: 0.25 0.02 240;
+        --input: 0.25 0.02 240;
+        --ring: 0.65 0.20 220;
+        --chart-1: 0.55 0.18 160;
+        --chart-2: 0.50 0.16 200;
+        --chart-3: 0.45 0.14 280;
+        --chart-4: 0.60 0.20 40;
+        --chart-5: 0.65 0.18 320;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+
+    /* Focus visible styles for accessibility */
+    *:focus-visible {
+        @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    }
+
+    /* Smooth scrolling with reduced motion support */
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+
+    /* Print styles */
+    @media print {
+        .no-print {
+            display: none !important;
+        }
+        
+        body {
+            @apply bg-white text-black;
+        }
+    }
+}
+
+@layer utilities {
+    /* Reduced motion utilities */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}

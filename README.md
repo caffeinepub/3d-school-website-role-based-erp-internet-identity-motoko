@@ -1,2 +1,3 @@
-# 3d-school-website-role-based-erp-internet-identity-motoko
-Exported from Caffeine project: 3D School Website + Role-Based ERP (Internet Identity + Motoko)
+## 3D School Website + Role-Based ERP (Internet Identity + Motoko)
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

@@ -1,0 +1,159 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-14T09:27:35.069Z",
+  "summary": "Diff adds a new Motoko backend actor with RBAC mixins and data maps, plus a new React frontend with public-site routing/layout, theme toggling, Internet Identity-based auth guard, and Three.js (R3F) components for a 3D hero and 360° panorama tour. Several detailed ERP/business requirements are not verifiable or appear incomplete based on the truncated backend models and limited frontend module evidence.",
+  "missing_requirements": [
+    {
+      "id": "REQ-7",
+      "requirement": "Persist data across canister upgrades using stable storage patterns for all ERP entities.",
+      "reason": "The backend shows in-memory Maps and counters, but the diff excerpt does not show any stable variables or upgrade hooks (e.g., stable var, preupgrade/postupgrade) to persist those maps/counters.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "CRUD APIs for all listed core ERP entities (including Classes/Sections, Timetables, Attendance, Grades, Fees, Announcements, Library items/loans/fines) with clear success/error results.",
+      "reason": "The backend defines some types and maps, but the provided truncated excerpt does not show the actual CRUD API methods for the entities, nor explicit Result-style success/error returns.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Admissions status tracking with defined states (e.g., Applied/Under Review/Accepted/Rejected/Enrolled).",
+      "reason": "StudentProfile.status in the backend excerpt is limited to {#active; #graduated; #inactive} and does not include the admissions pipeline states described in the requirement.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Student profile includes photo and document metadata; academic history view.",
+      "reason": "Backend StudentProfile.Profile includes an optional photo field but no document metadata fields are shown, and no explicit academic-history structure is shown in the excerpt.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "requirement": "Announcements/notifications include read/unread tracking per user and urgent flag with UI distinction.",
+      "reason": "Backend Announcement type in the excerpt has title/body/targetGroups/creatorId/timestamp but does not show an urgent flag or any per-user read/unread tracking structure.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "requirement": "Library module includes issue/return tracking and fine calculation/recording for overdue items.",
+      "reason": "Backend shows a Book map and checkedOutBooks map, but no loan records with due dates and no fine calculation/recording fields are shown in the excerpt.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "requirement": "Reports include CSV export and a print-friendly PDF-style view (frontend-generated).",
+      "reason": "Routes/pages for reports are added, but the diff summary does not show implementation of CSV export or print-friendly layouts for these reports (beyond generic print CSS).",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Parallax accents on public pages and motion polish beyond smooth scrolling, while respecting reduced-motion.",
+      "reason": "Global smooth scrolling and reduced-motion utilities are present, but there is no evidence of parallax accents being implemented in public pages/components in the provided diff excerpt.",
+      "evidence": [
+        "frontend/src/index.css"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Footer includes a promotional/referral link to caffeine.ai ('Built with caffeine.ai')",
+      "reason": "BuildRequest does not request vendor attribution or an outbound marketing link in the footer.",
+      "evidence": [
+        "frontend/src/components/layout/PublicFooter.tsx"
+      ]
+    },
+    {
+      "description": "Hidden/URL-based admin secret token initialization for access control ('caffeineAdminToken')",
+      "reason": "BuildRequest requires an Admin can be designated and roles assigned, but does not specify initializing access control using a secret query parameter token.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts"
+      ]
+    }
+  ],
+  "confidence": 0.64,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/auth/ProfileSetupModal.tsx",
+    "frontend/src/components/auth/RequireAuth.tsx",
+    "frontend/src/components/brand/SchoolLogo.tsx",
+    "frontend/src/components/layout/ErpLayout.tsx",
+    "frontend/src/components/layout/PublicFooter.tsx",
+    "frontend/src/components/layout/PublicLayout.tsx",
+    "frontend/src/components/layout/PublicNav.tsx",
+    "frontend/src/components/theme/ThemeProvider.tsx",
+    "frontend/src/components/theme/ThemeToggle.tsx",
+    "frontend/src/components/three/PanoramaViewer.tsx",
+    "frontend/src/components/three/SchoolHero3D.tsx",
+    "frontend/src/components/three/SchoolHeroFallback.tsx",
+    "frontend/src/components/three/WebGLSupport.ts",
+    "frontend/src/components/three/tourSpots.ts",
+    "frontend/src/hooks/queries/useCallerProfile.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/erp/DashboardPage.tsx",
+    "frontend/src/pages/erp/ErpLoginPage.tsx",
+    "frontend/src/pages/erp/academics/AssignmentsPage.tsx",
+    "frontend/src/pages/erp/academics/ClassSectionsPage.tsx",
+    "frontend/src/pages/erp/academics/ExamSchedulePage.tsx",
+    "frontend/src/pages/erp/academics/TimetableEditorPage.tsx",
+    "frontend/src/pages/erp/admin/RoleAssignmentPage.tsx",
+    "frontend/src/pages/erp/announcements/AnnouncementsPage.tsx",
+    "frontend/src/pages/erp/attendance/AttendanceOverviewPage.tsx",
+    "frontend/src/pages/erp/attendance/MarkAttendancePage.tsx",
+    "frontend/src/pages/erp/fees/FeesOverviewPage.tsx",
+    "frontend/src/pages/erp/fees/ReceiptPrintPage.tsx",
+    "frontend/src/pages/erp/grades/GradebookPage.tsx",
+    "frontend/src/pages/erp/grades/ReportCardPrintPage.tsx",
+    "frontend/src/pages/erp/library/LibraryCatalogPage.tsx",
+    "frontend/src/pages/erp/library/LibraryLoansPage.tsx",
+    "frontend/src/pages/erp/reports/AttendanceReportPage.tsx",
+    "frontend/src/pages/erp/reports/FinancialSummaryReportPage.tsx",
+    "frontend/src/pages/erp/reports/PerformanceReportPage.tsx",
+    "frontend/src/pages/erp/reports/ReportsIndexPage.tsx",
+    "frontend/src/pages/erp/staff/LeaveRequestsPage.tsx",
+    "frontend/src/pages/erp/staff/StaffDetailPage.tsx",
+    "frontend/src/pages/erp/staff/StaffListPage.tsx",
+    "frontend/src/pages/erp/students/StudentCreatePage.tsx",
+    "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+    "frontend/src/pages/erp/students/StudentIdCardPage.tsx",
+    "frontend/src/pages/erp/students/StudentsListPage.tsx",
+    "frontend/src/pages/erp/timetable/MyTimetablePage.tsx",
+    "frontend/src/pages/payments/PaymentFailurePage.tsx",
+    "frontend/src/pages/payments/PaymentSuccessPage.tsx",
+    "frontend/src/pages/public/AboutPage.tsx",
+    "frontend/src/pages/public/AcademicsPage.tsx",
+    "frontend/src/pages/public/AdmissionsPage.tsx",
+    "frontend/src/pages/public/CampusTourPage.tsx",
+    "frontend/src/pages/public/ContactPage.tsx",
+    "frontend/src/pages/public/EventsPage.tsx",
+    "frontend/src/pages/public/FacultyPage.tsx",
+    "frontend/src/pages/public/GalleryPage.tsx",
+    "frontend/src/pages/public/HomePage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

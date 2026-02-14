@@ -1,0 +1,870 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "3D School Website + Role-Based ERP (React + R3F + II + Motoko) — Frontend Plan",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Public school website pages with responsive navigation and footer links.",
+      "acceptanceCriteria": [
+        "Users can navigate to each page via the main navigation without errors.",
+        "Layout is responsive and usable on mobile and desktop.",
+        "All user-facing copy is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the app shell that mounts the router, global providers (theme, motion preferences), and shared layout for public + ERP areas."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "create",
+          "description": "Define public routes for Home, About Us, Academics, Admissions, Faculty, Events, Gallery, Contact and ERP base route. Wire navigation paths to these routes."
+        },
+        {
+          "path": "frontend/src/components/layout/PublicLayout.tsx",
+          "operation": "create",
+          "description": "Create a public-site layout wrapper that renders the responsive header navigation and footer with key links (routes from REQ-1)."
+        },
+        {
+          "path": "frontend/src/components/layout/PublicNav.tsx",
+          "operation": "create",
+          "description": "Implement responsive desktop + mobile navigation (including mobile menu) for the public pages."
+        },
+        {
+          "path": "frontend/src/components/layout/PublicFooter.tsx",
+          "operation": "create",
+          "description": "Implement a footer with key links to the required public pages plus Contact info area."
+        },
+        {
+          "path": "frontend/src/pages/public/HomePage.tsx",
+          "operation": "create",
+          "description": "Create the Home page structure (hero region placeholder to be filled by REQ-2) and add sections for highlights, announcements teaser, and quick links in English."
+        },
+        {
+          "path": "frontend/src/pages/public/AboutPage.tsx",
+          "operation": "create",
+          "description": "Create About Us page content and layout in English."
+        },
+        {
+          "path": "frontend/src/pages/public/AcademicsPage.tsx",
+          "operation": "create",
+          "description": "Create Academics page content and layout in English."
+        },
+        {
+          "path": "frontend/src/pages/public/AdmissionsPage.tsx",
+          "operation": "create",
+          "description": "Create Admissions page content and layout in English."
+        },
+        {
+          "path": "frontend/src/pages/public/FacultyPage.tsx",
+          "operation": "create",
+          "description": "Create Faculty page content and layout in English."
+        },
+        {
+          "path": "frontend/src/pages/public/EventsPage.tsx",
+          "operation": "create",
+          "description": "Create Events page content and layout in English (static list initially; can later be wired to ERP announcements/events if desired)."
+        },
+        {
+          "path": "frontend/src/pages/public/GalleryPage.tsx",
+          "operation": "create",
+          "description": "Create Gallery page layout that will render the generated gallery images (wired in REQ-21)."
+        },
+        {
+          "path": "frontend/src/pages/public/ContactPage.tsx",
+          "operation": "create",
+          "description": "Create Contact page with accessible contact form UI (front-end only unless backend capability is later added) and school contact details in English."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Home page 3D interactive hero using React Three Fiber with graceful fallback when WebGL is unavailable or device is low-performance.",
+      "acceptanceCriteria": [
+        "Home page renders a 3D hero scene without crashing.",
+        "3D scene performance is acceptable on typical laptops/phones (no continuous heavy re-renders).",
+        "If WebGL is unavailable, users see a static hero image/section instead of a broken canvas."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add/confirm dependencies for Three.js + React Three Fiber (and helper utilities such as @react-three/drei) to implement the 3D hero and 360 tour."
+        },
+        {
+          "path": "frontend/src/components/three/WebGLSupport.ts",
+          "operation": "create",
+          "description": "Add a small utility to detect WebGL availability and a conservative low-performance heuristic (e.g., prefers-reduced-motion, device memory, etc.) to decide between 3D vs fallback rendering."
+        },
+        {
+          "path": "frontend/src/components/three/SchoolHero3D.tsx",
+          "operation": "create",
+          "description": "Implement the 3D hero scene using React Three Fiber (animated campus/school scene, smooth camera controls). Ensure render loop is efficient and avoids unnecessary React re-renders."
+        },
+        {
+          "path": "frontend/src/components/three/SchoolHeroFallback.tsx",
+          "operation": "create",
+          "description": "Implement a static hero fallback component that uses the generated wide hero image at frontend/public/assets/generated/hero-campus.dim_1920x800.png."
+        },
+        {
+          "path": "frontend/src/pages/public/HomePage.tsx",
+          "operation": "modify",
+          "description": "Wire the hero area to render SchoolHero3D when supported, otherwise render the fallback. Ensure the section remains responsive and accessible (heading/CTA focus order)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Virtual Campus Tour panorama viewer using Three.js with at least 3 switchable 360° spots and mouse/touch controls.",
+      "acceptanceCriteria": [
+        "Users can open the tour and pan/zoom the 360° view.",
+        "Users can switch between at least 3 tour spots.",
+        "Tour works on mobile touch and desktop mouse controls."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/public/CampusTourPage.tsx",
+          "operation": "create",
+          "description": "Create a Virtual Campus Tour page using an equirectangular panorama viewer built with React Three Fiber/Three.js; include UI to switch between 3 spots."
+        },
+        {
+          "path": "frontend/src/components/three/PanoramaViewer.tsx",
+          "operation": "create",
+          "description": "Implement a reusable 360° equirectangular viewer with pan/zoom controls supporting mouse + touch gestures and safe defaults for performance."
+        },
+        {
+          "path": "frontend/src/components/three/tourSpots.ts",
+          "operation": "create",
+          "description": "Define the 3 tour spots referencing the generated assets: frontend/public/assets/generated/tour-spot-1-360.dim_4096x2048.jpg, frontend/public/assets/generated/tour-spot-2-360.dim_4096x2048.jpg, frontend/public/assets/generated/tour-spot-3-360.dim_4096x2048.jpg."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Add and wire a public route for the Virtual Campus Tour (either as its own page or as a route under the public section), and link it from navigation where appropriate."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Site-wide motion polish: smooth scrolling where appropriate, parallax accents, and accessible micro-interactions with reduced-motion support.",
+      "acceptanceCriteria": [
+        "Public pages include visible and consistent hover/focus states.",
+        "Animations do not block interaction and do not trap keyboard focus.",
+        "Reduced-motion preference is respected (reduced or disabled animations when enabled)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/motion/MotionProvider.tsx",
+          "operation": "create",
+          "description": "Create a motion preferences provider/hook that reads prefers-reduced-motion and exposes a flag to disable/reduce animations globally."
+        },
+        {
+          "path": "frontend/src/components/motion/ParallaxSection.tsx",
+          "operation": "create",
+          "description": "Add an optional parallax accent wrapper for decorative elements on public pages that automatically disables/reduces effect when reduced motion is enabled."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global focus-visible styles, smooth scrolling behavior (scoped carefully), and consistent hover/focus/press micro-interaction tokens while respecting prefers-reduced-motion."
+        },
+        {
+          "path": "frontend/src/components/layout/PublicNav.tsx",
+          "operation": "modify",
+          "description": "Apply consistent accessible hover/focus/active states to navigation items and mobile menu controls; ensure keyboard navigation works across menu open/close states."
+        },
+        {
+          "path": "frontend/src/pages/public/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add section anchors and smooth-scroll behavior for any in-page navigation used on Home (only where appropriate) and apply parallax accents for decorative elements via ParallaxSection."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Dark/light mode toggle with persisted preference; public site and ERP support both themes.",
+      "acceptanceCriteria": [
+        "Users can toggle dark/light mode from the UI.",
+        "Theme preference persists across reloads.",
+        "All primary UI surfaces/text meet readable contrast in both modes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/theme/useTheme.ts",
+          "operation": "create",
+          "description": "Implement a theme hook that toggles light/dark by applying a class to the document root and persisting preference in localStorage."
+        },
+        {
+          "path": "frontend/src/components/theme/ThemeToggle.tsx",
+          "operation": "create",
+          "description": "Create a theme toggle UI control (to be placed in public and ERP headers) using existing UI primitives; do not modify shadcn/ui sources."
+        },
+        {
+          "path": "frontend/src/components/theme/ThemeProvider.tsx",
+          "operation": "create",
+          "description": "Add a theme provider wrapper that initializes theme on load and exposes theme state/actions to the app."
+        },
+        {
+          "path": "frontend/src/components/layout/PublicNav.tsx",
+          "operation": "modify",
+          "description": "Add ThemeToggle to the public navigation header in a responsive-friendly position."
+        },
+        {
+          "path": "frontend/src/components/layout/ErpLayout.tsx",
+          "operation": "create",
+          "description": "Create an ERP layout shell with header/sidebar including ThemeToggle so ERP UI supports both themes."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define/adjust CSS variables for light/dark surfaces and typography tokens to ensure readable contrast across both themes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Authenticated ERP area at /erp using Internet Identity login and role-based access control UI/guards for Admin, Principal, Teacher, Student, Parent, Accountant, Librarian.",
+      "acceptanceCriteria": [
+        "Users can sign in/out using Internet Identity.",
+        "ERP routes require authentication; unauthenticated users are redirected to login.",
+        "Backend enforces RBAC checks for protected operations (not only frontend hiding).",
+        "At least one Admin can be designated and can assign roles to other users."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/ErpLoginPage.tsx",
+          "operation": "create",
+          "description": "Implement an ERP login page that uses the selected authorization component’s frontend guidance with Internet Identity sign-in/out and clears React Query cache on logout. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAuth.tsx",
+          "operation": "create",
+          "description": "Add a route guard wrapper that requires Internet Identity authentication for /erp routes and redirects unauthenticated users to the ERP login page. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireErpRole.tsx",
+          "operation": "create",
+          "description": "Add an RBAC UI guard that checks caller profile roles and shows an access-denied screen when role requirements are not met (do not rely on hiding only; handle backend authorization errors gracefully too). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useCallerProfile.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for getCallerUserProfile(), saveCallerUserProfile(), and getCallerUserRole() to support profile setup flow and role-aware UI. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Implement first-login profile setup modal to collect a human-readable name (and optional contact fields) and save via saveCallerUserProfile; avoid modal flash by following the authorization component guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/erp/admin/RoleAssignmentPage.tsx",
+          "operation": "create",
+          "description": "Create an Admin-only role assignment screen that allows assigning ERP roles to a selected principal/user (UI calls backend assignERPRole / assignCallerUserRole as available). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Add /erp route group with RequireAuth guard; wire /erp/login, /erp (dashboard), and admin role assignment route(s). Ensure navigation links appear only when authenticated/authorized."
+        },
+        {
+          "path": "frontend/src/components/layout/ErpLayout.tsx",
+          "operation": "modify",
+          "description": "Wire authenticated ERP navigation (role-aware sidebar items per role) and include logout control using Internet Identity; clear cached data on logout. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "ERP dashboard landing page with role-appropriate widgets using React Query with loading/empty states.",
+      "acceptanceCriteria": [
+        "After login, user sees a dashboard page.",
+        "Widgets differ depending on role (e.g., Teacher vs Student vs Accountant).",
+        "Dashboard loads data through React Query and shows loading/empty states."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/DashboardPage.tsx",
+          "operation": "create",
+          "description": "Implement the ERP dashboard page and wire role-based widget sets (e.g., announcements, timetable, attendance snapshot, pending invoices) with loading/empty states."
+        },
+        {
+          "path": "frontend/src/components/erp/widgets/AnnouncementsWidget.tsx",
+          "operation": "create",
+          "description": "Create a dashboard widget that fetches and displays recent announcements via React Query."
+        },
+        {
+          "path": "frontend/src/components/erp/widgets/TimetableWidget.tsx",
+          "operation": "create",
+          "description": "Create a role-aware widget showing today’s timetable (student/teacher) using class section data via React Query."
+        },
+        {
+          "path": "frontend/src/components/erp/widgets/AttendanceWidget.tsx",
+          "operation": "create",
+          "description": "Create a widget showing recent attendance summary for the current student (or a teacher’s class snapshot if authorized) using React Query."
+        },
+        {
+          "path": "frontend/src/components/erp/widgets/InvoicesWidget.tsx",
+          "operation": "create",
+          "description": "Create an accountant/student-oriented widget showing pending/overdue fees via React Query."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp to DashboardPage inside ErpLayout and ensure it is the post-login landing route."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Student Management UI: registration/profile, admissions status tracking, academic history view, and authorized search/filter; students/parents read-only views for own profile.",
+      "acceptanceCriteria": [
+        "Authorized roles can create and edit student profiles.",
+        "Admissions status can be updated through defined states (e.g., Applied/Under Review/Accepted/Rejected/Enrolled).",
+        "Student list supports search and basic filters (class/section/status).",
+        "Students/Parents can view (read-only) their own profile and history based on RBAC."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/students/StudentsListPage.tsx",
+          "operation": "create",
+          "description": "Implement student list with search and basic filters; restrict access with RequireErpRole for authorized staff roles."
+        },
+        {
+          "path": "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+          "operation": "create",
+          "description": "Implement student profile view with read-only mode for student/parent and editable mode for authorized staff; include admissions/status controls per RBAC."
+        },
+        {
+          "path": "frontend/src/pages/erp/students/StudentCreatePage.tsx",
+          "operation": "create",
+          "description": "Implement student registration form including photo/document metadata fields; restrict to authorized staff roles."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useStudents.ts",
+          "operation": "create",
+          "description": "Create React Query hooks to load student lists and student detail, and mutations for register/update status; handle backend authorization failures with user-friendly messages."
+        },
+        {
+          "path": "frontend/src/components/erp/students/StudentPhotoUploader.tsx",
+          "operation": "create",
+          "description": "Implement photo selection/upload UI using the selected blob-storage component’s ExternalBlob (e.g., ExternalBlob.fromBytes + upload progress) and render via getDirectURL when available. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/students routes (list, create, detail) into the ERP route tree with role guards; ensure ERP navigation includes Students entry only for authorized roles."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Attendance UI: calendar-style view for students/parents and mark-attendance workflow for teachers/admin scoped by class/date.",
+      "acceptanceCriteria": [
+        "Teachers/Admin can mark attendance for a class on a given date.",
+        "Students/Parents can view attendance history in a calendar or calendar-like list view.",
+        "Backend prevents unauthorized attendance modifications (RBAC enforced)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/attendance/AttendanceOverviewPage.tsx",
+          "operation": "create",
+          "description": "Implement attendance overview that shows a calendar-style grid/list for students/parents (read-only) and shows teacher/admin tools when authorized."
+        },
+        {
+          "path": "frontend/src/pages/erp/attendance/MarkAttendancePage.tsx",
+          "operation": "create",
+          "description": "Implement mark-attendance workflow for a selected class/section and date; restrict access to teacher/admin roles and handle authorization errors gracefully."
+        },
+        {
+          "path": "frontend/src/components/erp/attendance/AttendanceCalendar.tsx",
+          "operation": "create",
+          "description": "Create a reusable calendar-like attendance visualization component optimized for keyboard + touch usage."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useAttendance.ts",
+          "operation": "create",
+          "description": "Add React Query hooks for getAttendance (student) and markAttendance (teacher/admin) with loading/empty/error states."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/attendance routes and add role-aware ERP nav links (view vs mark) based on ERP role."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Grades/report cards UI: teacher grade entry, student gradebook, printable report card/transcript per term.",
+      "acceptanceCriteria": [
+        "Teachers can enter/update grades for students in their assigned classes.",
+        "Students/Parents can view grades for their own student account(s).",
+        "Report card view is printable and includes student info, subjects, and term totals/remarks."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/grades/GradebookPage.tsx",
+          "operation": "create",
+          "description": "Implement role-aware gradebook view: teachers can select class/assessment to enter grades; students/parents can view own grades read-only."
+        },
+        {
+          "path": "frontend/src/pages/erp/grades/ReportCardPrintPage.tsx",
+          "operation": "create",
+          "description": "Implement a print-friendly report card/transcript view suitable for browser printing (and save-as-PDF) with student info, subjects, and totals."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useGrades.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for getGrades, addGrade, getAssessmentsForClass, and calculateStudentGpa, including loading/empty/error states."
+        },
+        {
+          "path": "frontend/src/components/erp/print/PrintLayout.tsx",
+          "operation": "create",
+          "description": "Add a shared print layout wrapper to standardize printable views (margins, typography, hiding nav) used by report cards and other print exports."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/grades and /erp/grades/report-card (or similar) routes and ensure print route is reachable from relevant views."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Faculty/staff UI: staff profiles, leave requests, and class/timetable assignments management for Admin/Principal; teachers can view their timetable/classes.",
+      "acceptanceCriteria": [
+        "Admin/Principal can create/edit staff profiles and assign roles.",
+        "Staff can submit leave requests; Admin/Principal can approve/deny.",
+        "Teachers can view their own timetable and assigned classes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/staff/StaffListPage.tsx",
+          "operation": "create",
+          "description": "Create staff list/profile management UI for Admin/Principal (role-guarded)."
+        },
+        {
+          "path": "frontend/src/pages/erp/staff/StaffDetailPage.tsx",
+          "operation": "create",
+          "description": "Create staff profile view/edit UI for Admin/Principal and read-only view for the staff member where appropriate."
+        },
+        {
+          "path": "frontend/src/pages/erp/staff/LeaveRequestsPage.tsx",
+          "operation": "create",
+          "description": "Create leave request submission UI for staff and an approve/deny view for Admin/Principal (role-aware UI; handle backend authorization errors)."
+        },
+        {
+          "path": "frontend/src/pages/erp/timetable/MyTimetablePage.tsx",
+          "operation": "create",
+          "description": "Create teacher-facing timetable page showing assigned classes/sections and timetable strings."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useClasses.ts",
+          "operation": "create",
+          "description": "Add React Query hooks to load class/section and timetable data (getAllClassSections, getClassSection) for staff/timetable views."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/staff, /erp/leave, and /erp/timetable routes and show in ERP nav only for eligible roles."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Academic Management UI: courses/curriculum, class/section setup, timetable editing, exam schedule view, and assignment submission portal (metadata/links) with per-class visibility.",
+      "acceptanceCriteria": [
+        "Admin/Principal can manage courses and class/section structures.",
+        "Timetables can be created and viewed by relevant roles.",
+        "Teachers can create assignments for their classes; students can submit assignment entries (with attachment metadata).",
+        "Exam schedule is viewable by students/parents/teachers."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/academics/ClassSectionsPage.tsx",
+          "operation": "create",
+          "description": "Implement class/section setup and editing UI (Admin/Principal) and read-only views for other roles using class/section data."
+        },
+        {
+          "path": "frontend/src/pages/erp/academics/TimetableEditorPage.tsx",
+          "operation": "create",
+          "description": "Implement timetable creation/editing UI for Admin/Principal with role guard; ensure accessible form controls and validation."
+        },
+        {
+          "path": "frontend/src/pages/erp/academics/ExamSchedulePage.tsx",
+          "operation": "create",
+          "description": "Implement exam schedule view page (read-only) for relevant roles (students/parents/teachers)."
+        },
+        {
+          "path": "frontend/src/pages/erp/academics/AssignmentsPage.tsx",
+          "operation": "create",
+          "description": "Implement assignment listing and submission portal UI (teacher creates assignments; students submit entries with file/link metadata) with per-class visibility at the UI level and graceful handling of backend authorization errors."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useAcademics.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for creating class sections and fetching sections/assessments needed by academics flows; structure hooks to support loading/empty/error states."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/academics routes (sections, timetable editor, exams, assignments) and add role-aware ERP navigation entries."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Fee Management UI: fee structures, invoices, receipts, discounts, and payment flow that records payment status with optional Stripe checkout integration.",
+      "acceptanceCriteria": [
+        "Accountant/Admin can define fee structures and generate invoices for students.",
+        "Students/Parents can view invoices and payment status.",
+        "Payments can be marked as paid with recorded reference fields; if Stripe flow is enabled, the UI guides the user through checkout and records the returned status/reference.",
+        "Receipts are viewable/printable for paid invoices."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/fees/FeesOverviewPage.tsx",
+          "operation": "create",
+          "description": "Implement fees overview page with role-aware views: accountant/admin manage invoices; students/parents view own invoices and statuses."
+        },
+        {
+          "path": "frontend/src/pages/erp/fees/ReceiptPrintPage.tsx",
+          "operation": "create",
+          "description": "Implement print-friendly receipt view for paid invoices suitable for browser printing/save-as-PDF."
+        },
+        {
+          "path": "frontend/src/components/payments/PaymentSetup.tsx",
+          "operation": "create",
+          "description": "Implement Stripe configuration UI for Admin only using isStripeConfigured() and setStripeConfiguration() from the selected stripe component. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/payments/useCreateCheckoutSession.ts",
+          "operation": "create",
+          "description": "Implement a checkout-session creation hook using React Query mutation, parsing JSON response and validating a non-empty url before redirect, per selected stripe component guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/payments/PaymentSuccessPage.tsx",
+          "operation": "create",
+          "description": "Create payment success handler page that reads session info (as needed) and checks session status via getStripeSessionStatus() to inform the user and refresh relevant fee data. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/payments/PaymentFailurePage.tsx",
+          "operation": "create",
+          "description": "Create payment failure handler page that shows a user-friendly error and recovery path. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useFees.ts",
+          "operation": "create",
+          "description": "Add React Query hooks for getFees, createFee, markFeePaid, createCheckoutSession, and getStripeSessionStatus; ensure loading/empty/error handling and cache invalidation after updates."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/fees and receipt print route(s), plus required Stripe routes /payment-success and /payment-failure (as required by selected stripe component). Ensure these routes are registered and reachable."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "In-app announcements/notifications UI with targeting and read/unread tracking presentation including urgent visual distinction.",
+      "acceptanceCriteria": [
+        "Authorized roles can create announcements with audience targeting.",
+        "Users see a notifications list with read/unread state.",
+        "Announcements can be marked as “urgent” and visually distinguished in the UI."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/announcements/AnnouncementsPage.tsx",
+          "operation": "create",
+          "description": "Implement announcements list UI with read/unread presentation, urgent styling, and role-aware create form (authorized roles only)."
+        },
+        {
+          "path": "frontend/src/components/erp/announcements/AnnouncementComposer.tsx",
+          "operation": "create",
+          "description": "Create a composer form supporting targeting by role/class/section options (as supported by backend capabilities) with accessible validation."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useAnnouncements.ts",
+          "operation": "create",
+          "description": "Add React Query hooks for getAnnouncements and createAnnouncement with cache invalidation and user-friendly error handling."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/announcements route and add role-aware navigation link(s)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Library UI: book catalog CRUD, search, issue/return tracking, and fine display/recording UI for overdue items.",
+      "acceptanceCriteria": [
+        "Librarian can add/edit/remove catalog entries.",
+        "Users can search the catalog by title/author/keyword.",
+        "Librarian can issue and return books to students; overdue fines are computed and stored/displayed."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/library/LibraryCatalogPage.tsx",
+          "operation": "create",
+          "description": "Implement searchable book catalog view for all roles (as allowed) and librarian-only CRUD controls."
+        },
+        {
+          "path": "frontend/src/pages/erp/library/LibraryLoansPage.tsx",
+          "operation": "create",
+          "description": "Implement librarian workflow to issue/return books to students and view current checkouts; show overdue/fine information as provided by backend capabilities."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useLibrary.ts",
+          "operation": "create",
+          "description": "Add React Query hooks for getBooks, addBook, checkoutBook, returnBook, getCheckedOutBooks with loading/empty/error states and cache invalidation."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/library routes and add librarian-only navigation entries for management views."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Reports & analytics UI with role-appropriate reports; export to CSV and print-friendly PDF-style views (frontend-generated).",
+      "acceptanceCriteria": [
+        "At least 1 attendance report, 1 performance report, and 1 financial summary report are available (scoped by role).",
+        "Users can export tabular data to CSV.",
+        "Reports have a print-friendly layout suitable for “Save as PDF” in the browser."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/reports/ReportsIndexPage.tsx",
+          "operation": "create",
+          "description": "Create reports landing page that shows available reports based on role (attendance, performance, financial)."
+        },
+        {
+          "path": "frontend/src/pages/erp/reports/AttendanceReportPage.tsx",
+          "operation": "create",
+          "description": "Implement an attendance report view using existing attendance data; include CSV export and print-friendly layout."
+        },
+        {
+          "path": "frontend/src/pages/erp/reports/PerformanceReportPage.tsx",
+          "operation": "create",
+          "description": "Implement a performance report using grades/GPA data; include CSV export and print-friendly layout."
+        },
+        {
+          "path": "frontend/src/pages/erp/reports/FinancialSummaryReportPage.tsx",
+          "operation": "create",
+          "description": "Implement a financial summary report using fee/invoice data; include CSV export and print-friendly layout."
+        },
+        {
+          "path": "frontend/src/utils/exportCsv.ts",
+          "operation": "create",
+          "description": "Add a small CSV export utility for tabular data (client-side) with safe escaping and header support."
+        },
+        {
+          "path": "frontend/src/components/erp/print/PrintLayout.tsx",
+          "operation": "modify",
+          "description": "Extend the shared print layout to support report headers/filters summary and consistent print typography."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire /erp/reports routes and ensure they are reachable from ERP navigation for authorized roles."
+        }
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "summary": "Printable student ID card view composed from student photo + key fields with role-based access controls.",
+      "acceptanceCriteria": [
+        "Authorized staff can open a student and view an ID card preview.",
+        "ID card layout is printable and includes at least student name, ID, class/section, and photo.",
+        "Students/Parents cannot generate other students’ cards."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/erp/students/StudentIdCardPage.tsx",
+          "operation": "create",
+          "description": "Create a printable ID card preview page for a student, guarded by RequireErpRole to prevent students/parents from generating other students’ cards."
+        },
+        {
+          "path": "frontend/src/components/erp/students/StudentIdCard.tsx",
+          "operation": "create",
+          "description": "Implement the ID card layout component using student fields and photo rendering; include the generated background pattern frontend/public/assets/generated/id-card-bg.dim_1050x650.png."
+        },
+        {
+          "path": "frontend/src/pages/erp/students/StudentDetailPage.tsx",
+          "operation": "modify",
+          "description": "Add a role-guarded action/link from student detail to open the ID card preview for authorized staff."
+        },
+        {
+          "path": "frontend/src/routes/router.tsx",
+          "operation": "modify",
+          "description": "Wire an /erp/students/:id/id-card (or equivalent) route to the ID card page and ensure navigation access is not exposed to unauthorized roles."
+        }
+      ]
+    },
+    {
+      "id": "REQ-19",
+      "summary": "Accessibility and performance improvements across public pages and 3D assets (WCAG basics + progressive/lazy loading for 3D).",
+      "acceptanceCriteria": [
+        "All interactive controls are keyboard accessible with visible focus.",
+        "Forms have labels and validation errors are announced/visible.",
+        "3D scenes load progressively (no blocking full-page load) and use lazy loading where feasible."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Strengthen WCAG-aligned global styles: focus-visible, semantic defaults, reduced-motion behavior, and readable form error styling."
+        },
+        {
+          "path": "frontend/src/components/a11y/VisuallyHidden.tsx",
+          "operation": "create",
+          "description": "Add a visually-hidden utility component for accessible labels/announcements where needed."
+        },
+        {
+          "path": "frontend/src/components/a11y/FormField.tsx",
+          "operation": "create",
+          "description": "Create a small accessible form field wrapper to standardize labels, help text, and error message rendering across ERP forms."
+        },
+        {
+          "path": "frontend/src/components/three/SchoolHero3D.tsx",
+          "operation": "modify",
+          "description": "Optimize 3D hero performance: lazy load heavy assets, reduce texture sizes where feasible, avoid continuous heavy computations, and disable intensive effects when reduced-motion/low-performance is detected."
+        },
+        {
+          "path": "frontend/src/pages/public/CampusTourPage.tsx",
+          "operation": "modify",
+          "description": "Ensure the 360 viewer is touch-friendly, keyboard safe for controls UI, and does not block page load (lazy load viewer bundle where feasible)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "summary": "Apply a cohesive modern school brand theme (non-blue/purple default) across public site and ERP with consistent typography, spacing, and component styling in both light/dark mode.",
+      "acceptanceCriteria": [
+        "Public site and ERP share consistent typography, spacing, and component styling.",
+        "Theme defines primary/secondary colors and is applied consistently to navigation, buttons, cards, and headings.",
+        "Design remains readable and professional in both light and dark mode."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define a cohesive design system via CSS variables (primary/secondary palette not default blue/purple), typography scale, spacing rhythm, and component surface tokens for both light and dark themes."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions (if needed) to align with the chosen palette and typography tokens (keeping darkMode: ['class'])."
+        },
+        {
+          "path": "frontend/src/components/layout/PublicLayout.tsx",
+          "operation": "modify",
+          "description": "Apply consistent layout spacing and component styling (nav, footer, content widths) using the shared theme tokens."
+        },
+        {
+          "path": "frontend/src/components/layout/ErpLayout.tsx",
+          "operation": "modify",
+          "description": "Apply consistent ERP styling (sidebar, header, cards, tables) using the same theme tokens used by the public site."
+        }
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "summary": "Add and render required generated static images from frontend/public/assets/generated for logo, hero, tour spots, gallery, and ID card background without backend routing.",
+      "acceptanceCriteria": [
+        "All required generated images exist under frontend/public/assets/generated and are referenced directly by the frontend.",
+        "Public pages render the generated logo/hero/tour/gallery images without backend involvement."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/school-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add generated asset file to be used as the school logo in public navigation/footer and ERP header branding."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-campus.dim_1920x800.png",
+          "operation": "create",
+          "description": "Add generated asset file to be used as the static hero fallback and/or gallery highlight image."
+        },
+        {
+          "path": "frontend/public/assets/generated/tour-spot-1-360.dim_4096x2048.jpg",
+          "operation": "create",
+          "description": "Add generated 360 panorama for tour spot 1 (courtyard)."
+        },
+        {
+          "path": "frontend/public/assets/generated/tour-spot-2-360.dim_4096x2048.jpg",
+          "operation": "create",
+          "description": "Add generated 360 panorama for tour spot 2 (hallway/library)."
+        },
+        {
+          "path": "frontend/public/assets/generated/tour-spot-3-360.dim_4096x2048.jpg",
+          "operation": "create",
+          "description": "Add generated 360 panorama for tour spot 3 (classroom/lab)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-01.dim_1600x1000.jpg",
+          "operation": "create",
+          "description": "Add generated gallery image 1 to be displayed on the public Gallery page."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-02.dim_1600x1000.jpg",
+          "operation": "create",
+          "description": "Add generated gallery image 2 to be displayed on the public Gallery page."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-03.dim_1600x1000.jpg",
+          "operation": "create",
+          "description": "Add generated gallery image 3 to be displayed on the public Gallery page."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-04.dim_1600x1000.jpg",
+          "operation": "create",
+          "description": "Add generated gallery image 4 to be displayed on the public Gallery page."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-05.dim_1600x1000.jpg",
+          "operation": "create",
+          "description": "Add generated gallery image 5 to be displayed on the public Gallery page."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-06.dim_1600x1000.jpg",
+          "operation": "create",
+          "description": "Add generated gallery image 6 to be displayed on the public Gallery page."
+        },
+        {
+          "path": "frontend/public/assets/generated/id-card-bg.dim_1050x650.png",
+          "operation": "create",
+          "description": "Add generated ID card background pattern used by the printable ID card UI."
+        },
+        {
+          "path": "frontend/src/components/brand/SchoolLogo.tsx",
+          "operation": "create",
+          "description": "Create a small logo component that renders frontend/public/assets/generated/school-logo.dim_512x512.png and is reused in PublicNav, PublicFooter, and ErpLayout."
+        },
+        {
+          "path": "frontend/src/components/layout/PublicNav.tsx",
+          "operation": "modify",
+          "description": "Wire SchoolLogo into the public navigation header and ensure it links to Home."
+        },
+        {
+          "path": "frontend/src/pages/public/GalleryPage.tsx",
+          "operation": "modify",
+          "description": "Render the gallery images directly from frontend/public/assets/generated/gallery-01.dim_1600x1000.jpg through gallery-06.dim_1600x1000.jpg with responsive layout and accessible alt text."
+        },
+        {
+          "path": "frontend/src/pages/public/CampusTourPage.tsx",
+          "operation": "modify",
+          "description": "Ensure tour spots use the generated panorama assets from frontend/public/assets/generated (spot 1/2/3) and are not routed through the backend."
+        },
+        {
+          "path": "frontend/src/components/three/SchoolHeroFallback.tsx",
+          "operation": "modify",
+          "description": "Ensure the fallback hero uses frontend/public/assets/generated/hero-campus.dim_1920x800.png directly (no backend involvement)."
+        }
+      ]
+    }
+  ]
+}
